@@ -1,0 +1,285 @@
+/*
+ * site.css — layout for the Emma Albach portfolio.
+ * The books, page-flips and details panel come from Codrops (component.css, bookblock.css).
+ * Textures are from Subtle Patterns (CC BY-SA 3.0): "Natural Paper" for the wall,
+ * "Purty Wood" for the shelves, "Dark Wood" for the bookcase back. See CREDITS.md.
+ * Typefaces: Playfair Display, Jost and Cardo from Google Fonts.
+ */
+
+:root {
+	--accent: #e85d9b;
+	--ink: #2b2b2b;
+	--muted: #6b6461;
+	--book-w: 180px;
+	--book-h: 260px;
+}
+
+/* From the Codrops demo.css */
+*, *:after, *:before { box-sizing: border-box; }
+
+body {
+	margin: 0;
+	color: var(--ink);
+	font-family: "Jost", sans-serif;
+	font-weight: 400;
+	background: #efebe6 url(../img/textures/natural_paper.png);
+}
+
+a { color: inherit; }
+
+/* ---------- Site header ---------- */
+
+.site-header {
+	padding: 4em 1.5em 1em;
+	text-align: center;
+}
+
+.site-header h1 {
+	margin: 0;
+	font-family: "Playfair Display", serif;
+	font-weight: 400;
+	font-size: clamp(2.6em, 7vw, 4.5em);
+	line-height: 1.05;
+}
+
+.site-header .tagline {
+	margin: 0.6em 0 0;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-size: 0.8em;
+	color: var(--muted);
+}
+
+.site-header .intro {
+	margin: 1.6em auto 0;
+	max-width: 32em;
+	font-family: "Cardo", serif;
+	font-style: italic;
+	font-size: 1.1em;
+	color: var(--muted);
+}
+
+.site-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.4em 1.6em;
+	margin-top: 2em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.75em;
+}
+
+.site-nav a {
+	text-decoration: none;
+	padding-bottom: 2px;
+	border-bottom: 1px solid transparent;
+}
+
+.site-nav a:hover,
+.site-nav a:focus { border-bottom-color: var(--accent); }
+
+/* ---------- Bookcase ---------- */
+
+.bookcase {
+	margin: 2.5em auto 0;
+	padding: 0 0 1em;
+	max-width: 1240px;
+}
+
+.shelf {
+	position: relative;
+	margin: 0 0 3.5em;
+	scroll-margin-top: 1em;
+}
+
+.shelf-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.3em 1em;
+	padding: 0 24px;
+}
+
+.shelf-header h2 {
+	margin: 0;
+	font-family: "Playfair Display", serif;
+	font-weight: 400;
+	font-size: 2em;
+}
+
+.shelf-header p {
+	margin: 0;
+	font-family: "Cardo", serif;
+	font-style: italic;
+	color: var(--muted);
+}
+
+.shelf-link {
+	margin-left: auto;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.7em;
+	text-decoration: none;
+	color: var(--accent);
+}
+
+/* The shelf scrolls sideways when there are more books than fit */
+.shelf-scroll {
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-snap-type: x proximity;
+	-webkit-overflow-scrolling: touch;
+	margin-top: 0.5em;
+	background: url(../img/textures/dark_wood.png);
+	border-radius: 4px;
+	box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Codrops' .bookshelf, laid out as one row per shelf */
+.shelf .bookshelf {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	min-width: max-content;
+	margin: 0 auto;
+	padding: 0 12px;
+}
+
+.shelf .bookshelf figure {
+	flex: 0 0 auto;
+	width: 240px;
+	max-width: none;
+	margin: 0;
+	padding: 70px 0 30px;
+	scroll-snap-align: center;
+	color: #f3ede6;
+}
+
+/* The wooden plank the books stand on */
+.shelf .bookshelf::before {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(70px + var(--book-h));
+	z-index: 0;
+	height: 22px;
+	background: url(../img/textures/purty_wood.png) center;
+	box-shadow: 0 10px 14px -4px rgba(0, 0, 0, 0.55), inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+	content: '';
+}
+
+.shelf .bookshelf figure .perspective { z-index: 1; height: var(--book-h); }
+.shelf .bookshelf figcaption { top: auto; }
+
+/* Captions and buttons sit on the dark bookcase */
+.shelf .bookshelf .buttons { margin-top: 30px; }
+.shelf .bookshelf .buttons a { color: rgba(243, 237, 230, 0.75); text-decoration: none; }
+.shelf .bookshelf .buttons a:hover,
+.shelf .bookshelf .buttons a:focus { color: #fff; }
+.shelf .bookshelf .buttons a:first-child:not(:only-child) { border-right-color: rgba(243, 237, 230, 0.3); }
+
+.shelf .bookshelf figcaption h2 { font-size: 1.3em; line-height: 1.2; }
+.shelf .bookshelf figcaption h2 span::before { background: rgba(243, 237, 230, 0.25); }
+
+/* Details panel (Codrops) — dark text on its white card */
+.shelf .bookshelf .details { color: var(--ink); text-align: left; }
+.shelf .bookshelf .details ul { padding-top: 90px; font-size: 0.9em; }
+.shelf .bookshelf .details a { color: var(--accent); }
+.shelf .bookshelf figure.details-open { color: var(--ink); }
+
+/* ---------- Cover text ---------- */
+
+.cover-label {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 22px 16px 20px 24px;
+	color: var(--book-ink, #222);
+	text-align: left;
+}
+
+.cover-label em {
+	font-style: normal;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 0.62em;
+	opacity: 0.85;
+}
+
+.cover-label strong {
+	font-family: "Playfair Display", serif;
+	font-weight: 400;
+	font-size: 1.45em;
+	line-height: 1.15;
+}
+
+.cover-label.has-image em,
+.cover-label.has-image strong {
+	align-self: flex-start;
+	padding: 4px 8px;
+	background: rgba(0, 0, 0, 0.45);
+	color: #fff;
+}
+
+/* ---------- Inside the book (Codrops page layouts, retuned for these fonts) ---------- */
+
+.bb-custom-wrapper { background: #fff; }
+
+.page-layout-3 h3 {
+	font-family: "Playfair Display", serif;
+	text-transform: none;
+	font-size: 5em;
+	line-height: 1.05;
+}
+
+.page-layout-3 p { margin-top: 1em; font-size: 1.3em; }
+
+.page-layout-1 h3 { font-size: 2.6em; }
+
+.page-layout-1 h3 span {
+	margin-top: 10px;
+	padding: 10px 0;
+	font-size: 0.4em;
+	letter-spacing: 6px;
+}
+
+.page-layout-1 p {
+	max-width: 380px;
+	font-size: 1.35em;
+	line-height: 1.6;
+	text-align: left;
+}
+
+.page-layout-1 p a { color: var(--accent); font-style: normal; font-family: "Jost", sans-serif; }
+
+.page-layout-embed {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow-y: auto;
+}
+
+.page-layout-embed .instagram-media { max-width: 90% !important; }
+
+@media screen and (max-width: 41.375em) {
+	.page-layout-3 h3 { font-size: 3.4em; }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+	padding: 2em 1.5em 3em;
+	text-align: center;
+	font-size: 0.8em;
+	color: var(--muted);
+}
+
+.site-footer a { color: var(--accent); }
+
+/* Respect reduced-motion settings for the entrance animation */
+@media (prefers-reduced-motion: reduce) {
+	.animate__animated { animation: none !important; }
+}
