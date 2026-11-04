@@ -45,13 +45,13 @@
 			var color = book.color || pal.color;
 			var ink = book.ink || (book.color ? '#222' : (pal.ink || '#222'));
 			var style = '--book-color:' + color + ';--book-ink:' + ink + ';' +
-				(book.cover ? '--cover-img:url(\'' + encodeURI(book.cover) + '\');' : '');
+				(book.cover ? '--cover-img:url(\'' + new URL(book.cover, document.baseURI).href + '\');' : ''); /* absolute, so the stylesheet that uses it does not resolve it from css/ */
 			var readLink = book.url ? '<a href="' + esc(book.url) + '" target="_blank" rel="noopener">Read it &rarr;</a>' : '';
 
 			figures +=
 				'<figure>' +
 					'<div class="book" data-book="' + esc(id) + '" style="' + style + '">' +
-						'<span class="cover-label' + (book.cover ? ' has-image' : '') + '"><em>' + esc(book.venue || shelf.title) + '</em><strong>' + esc(book.title) + '</strong></span>' +
+						(book.coverText === false ? '' : '<span class="cover-label' + (book.cover ? ' has-image' : '') + '"><em>' + esc(book.venue || shelf.title) + '</em><strong>' + esc(book.title) + '</strong></span>') +
 					'</div>' +
 					'<div class="buttons"><a href="#">Look inside</a><a href="#">Details</a></div>' +
 					'<figcaption><h2>' + esc(book.title) + ' <span>' + line([book.venue, book.date]) + '</span></h2></figcaption>' +
