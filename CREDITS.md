@@ -22,3 +22,12 @@ Every visual design, animation and script on this site comes from an existing, p
 - `css/site.css` lays the Codrops books out in rows on the Subtle Patterns textures.
 
 Demo images from the Codrops download (cover and spine artwork, the portrait photo and backpack illustration) are **not** used.
+
+## Cover images (`img/covers/`)
+
+Each cover is the image from the original post, cropped or padded to the 180 × 260 book shape (saved at 360 × 520 for sharp screens).
+
+- `substack-*.jpg`: header images from Emma's posts on [The Book of Em](https://emmaalbach.substack.com/), centre-cropped to portrait.
+- `ig-*.jpg`: the first slide of each [@recommendedby.emma](https://www.instagram.com/recommendedby.emma/) post. The whole slide is kept, with a blurred copy of the same slide filling the space above and below, so no text on the design is cut off.
+- `substack-anti-intellectualism.jpg`: the post has no image. Cover is Jean-Honoré Fragonard, *Young Girl Reading*, c. 1769, National Gallery of Art, Washington, from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Jean_Honor%C3%A9_Fragonard,_Young_Girl_Reading,_c._1769,_NGA_46303.jpg) (CC0).
+- `substack-underconsumption-core.jpg`: the post has no image. Cover is Pieter Claesz, *Vanitas Still Life*, Mauritshuis, The Hague, from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pieter_Claesz_-_Vanitas_Still_Life_-_943_-_Mauritshuis.jpg) (public domain).
